@@ -3,15 +3,15 @@ package ru.gafarov.socket;
 import ru.gafarov.app.ServerStarter;
 import ru.gafarov.exception.BusyPortException;
 import ru.gafarov.exception.IncorrectPortValueException;
+import ru.gafarov.listener.Notifier;
 
 import java.io.IOException;
-import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class Server {
+public class Server implements Notifier {
 
     private final int port;
     private final static int MAX_ROOM_CAPACITY = 10;
@@ -28,6 +28,7 @@ public class Server {
         }
     }
 
+    @Override
     public void notifyUsers(String message) {
         for (UserHandler userHandler : users) {
             userHandler.sendMessageToClient(message);

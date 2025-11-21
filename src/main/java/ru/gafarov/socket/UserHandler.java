@@ -4,13 +4,14 @@ import ru.gafarov.app.UserStarter;
 import ru.gafarov.exception.ConnectionInterruptedException;
 import ru.gafarov.exception.ServerNotFoundException;
 import ru.gafarov.listener.MessageListener;
+import ru.gafarov.listener.Notifier;
 
 import java.io.*;
 import java.net.Socket;
 
 public class UserHandler implements MessageListener {
 
-    private final Server server;
+    private final Notifier server;
     private final Socket socket;
     private final BufferedReader in;
     private final PrintWriter out;
